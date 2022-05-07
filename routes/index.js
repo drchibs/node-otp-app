@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const otp = require('../controllers/otpController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.post('/signup', otp.sendOtp);
+router.post('/verify', otp.verifyOtp);
+router.get('/balance', otp.checkBalance);
 
 module.exports = router;
