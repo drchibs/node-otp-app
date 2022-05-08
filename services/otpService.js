@@ -9,12 +9,12 @@ const termii = new Termii({
 	sender_id: sender_id,
 });
 
-const sendOtp = async (name, phoneNumber) => {
+const sendOtp = (name, phoneNumber) => {
     const pinPlaceholder = '< 1234 >';
     const message = `Hello ${name}, your OTP is ${pinPlaceholder}. This pin will expire in 1 minute.`;
 
     try{
-        const response = await termii.sendToken(phoneNumber, pinPlaceholder, message);
+        const response = termii.sendToken(phoneNumber, pinPlaceholder, message);
         return response;
     }
     catch(err){
@@ -22,9 +22,9 @@ const sendOtp = async (name, phoneNumber) => {
     }
 }
 
-const verifyOtp = async (pindId, pin) => {
+const verifyOtp = (pindId, pin) => {
     try{
-        const response = await termii.verifyToken(pindId, pin);
+        const response = termii.verifyToken(pindId, pin);
         return response;
     }
     catch(err){
@@ -33,9 +33,9 @@ const verifyOtp = async (pindId, pin) => {
    
 }
 
-const checkBalance = async() => {
+const checkBalance = () => {
     try{
-        const response = await termii.getBalance();
+        const response = termii.getBalance();
         return response;
     }
     catch(err){
@@ -45,7 +45,7 @@ const checkBalance = async() => {
 
 // const checkBalanceWithFetch = async() => {
 //     try{
-//         const response = await fetch(`https://api.ng.termii.com/api/get-balance?api_key=${process.env.API_KEY}`);
+//         const response = fetch(`https://api.ng.termii.com/api/get-balance?api_key=${process.env.API_KEY}`);
 //         return response;
 //     }
 //     catch(err){
